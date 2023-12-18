@@ -29,4 +29,4 @@ RUN wget https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl \
     && mv kubectl /usr/local/bin/
     
 # Set the default command to bash
-CMD ["bash"]
+CMD ["sh"]
