@@ -5,8 +5,10 @@ FROM alpine:latest
 RUN apk update && apk upgrade
 
 # Install necessary packages
-RUN apk add --no-cache bash git openssh-client curl python3 py3-pip \
-    && apk add --no-cache docker-cli
+RUN apk add --no-cache git openssh-client curl python3 py3-pip zsh zsh-autosuggestions zsh-syntax-highlighting zsh-theme-powerlevel10k \
+    && apk add --no-cache docker-cli \
+    && mkdir -p ~/.local/share/zsh/plugins \
+    && ln -s /usr/share/zsh/plugins/powerlevel10k ~/.local/share/zsh/plugins/   
 
 # Install Terraform
 RUN wget https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_linux_amd64.zip \
@@ -29,4 +31,4 @@ RUN wget https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl \
     && mv kubectl /usr/local/bin/
     
 # Set the default command to bash
-CMD ["sh"]
+ENTRYPOINT /bin/zsh

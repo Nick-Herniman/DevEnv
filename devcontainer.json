@@ -1,0 +1,24 @@
+{
+    "name": "DevEnv",
+    "dockerFile": "Dockerfile",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-vscode-remote.remote-containers"
+                // Add other desired extensions here
+            ],
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            }
+        }
+    },
+    "forwardPorts": [
+        // List any ports you want to forward here (e.g., if you're running a web server)
+    ],
+    "postCreateCommand": "echo 'Container is ready!'",
+    "remoteUser": "root",
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
+}
