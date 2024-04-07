@@ -29,6 +29,18 @@ RUN wget https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz \
 RUN wget https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl \
     && chmod +x kubectl \
     && mv kubectl /usr/local/bin/
+
+# Install necessary dependencies
+RUN apk --no-cache add \
+    groff \
+    less \
+    mailcap \
+    curl \
+    unzip \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install \
+    && rm -rf ./aws awscliv2.zip
     
 # Set the default command to bash
 ENTRYPOINT /bin/zsh
